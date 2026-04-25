@@ -1,0 +1,136 @@
+/* ============================================
+   tlearning - Estilos globales
+   ============================================
+   REGLA: @import siempre primero
+*/
+
+/* 1. Fuentes */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+/* 2. Tailwind */
+@import "tailwindcss";
+
+/* ============================================
+   @theme → Extender el sistema de diseño
+   
+   En TW v4, @theme reemplaza tailwind.config.js
+   Aquí defines colores, animaciones, fuentes...
+   que luego usas como clases: bg-tw-500, text-dark-900
+   ============================================ */
+@theme {
+  /* ---- Colores Tailwind brand ---- */
+  --color-tw-50:  #f0fdfa;
+  --color-tw-100: #ccfbf1;
+  --color-tw-200: #99f6e4;
+  --color-tw-300: #5eead4;
+  --color-tw-400: #38bdf8;
+  --color-tw-500: #06b6d4;
+  --color-tw-600: #0891b2;
+  --color-tw-700: #0e7490;
+  --color-tw-800: #155e75;
+  --color-tw-900: #164e63;
+
+  /* ---- Fondos oscuros ---- */
+  --color-dark-500: #2d2d2d;
+  --color-dark-600: #242424;
+  --color-dark-700: #1a1a2e;
+  --color-dark-800: #141427;
+  --color-dark-900: #0c0c1d;
+
+  /* ---- Animaciones ---- */
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-float-delayed: float 6s ease-in-out infinite 2s;
+  --animate-spin-slow: spin 15s linear infinite;
+  --animate-slide-up: slideUp 0.6s ease-out;
+  --animate-slide-down: slideDown 0.3s ease-out;
+  --animate-fade-in: fadeIn 0.5s ease-out;
+  --animate-bounce-in: bounceIn 0.6s ease-out;
+  --animate-pulse-glow: pulseGlow 2s ease-in-out infinite;
+
+  /* ---- Keyframes ---- */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50%      { transform: translateY(-20px); }
+  }
+  @keyframes slideUp {
+    0%   { transform: translateY(30px); opacity: 0; }
+    100% { transform: translateY(0);    opacity: 1; }
+  }
+  @keyframes slideDown {
+    0%   { transform: translateY(-10px); opacity: 0; }
+    100% { transform: translateY(0);     opacity: 1; }
+  }
+  @keyframes fadeIn {
+    0%   { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  @keyframes bounceIn {
+    0%   { transform: scale(0.3); opacity: 0; }
+    50%  { transform: scale(1.05); }
+    70%  { transform: scale(0.9); }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  @keyframes pulseGlow {
+    0%, 100% { box-shadow: 0 0 20px rgba(6, 182, 212, 0.3); }
+    50%      { box-shadow: 0 0 40px rgba(6, 182, 212, 0.6); }
+  }
+}
+
+/* ============================================
+   Estilos base del documento
+   ============================================ */
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--color-dark-900);
+  color: #f3f4f6;
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar       { width: 8px; }
+::-webkit-scrollbar-track { background: var(--color-dark-800); }
+::-webkit-scrollbar-thumb { background: rgba(6, 182, 212, 0.4); border-radius: 9999px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(6, 182, 212, 0.6); }
+::selection { background: rgba(6, 182, 212, 0.3); color: white; }
+
+/* ============================================
+   @utility → Crear clases propias reutilizables
+   
+   En TW v4 reemplaza a @apply dentro de @layer
+   Cada @utility crea UNA clase que puedes usar
+   como cualquier clase de Tailwind
+   ============================================ */
+
+/* Efecto vidrio translúcido */
+@utility glass {
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@utility glass-strong {
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(48px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Texto con gradiente Tailwind */
+@utility gradient-text {
+  background: linear-gradient(to right, #06b6d4, #38bdf8, #818cf8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Fuente de código */
+@utility code-font {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Resplandor neón */
+@utility neon-glow {
+  text-shadow:
+    0 0 10px rgba(6, 182, 212, 0.5),
+    0 0 20px rgba(6, 182, 212, 0.3),
+    0 0 40px rgba(6, 182, 212, 0.1);
+}
